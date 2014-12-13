@@ -1,11 +1,6 @@
 include:
   - pkg.www.nginx
-  - srv.www.nginx.ssl.common
-  {% if pillar.has_key('www_ssl_intermediate') %}
-  - srv.www.nginx.ssl.intermediate
-  {% else %}
-  - srv.www.nginx.ssl.modern
-  {% endif %}
+  - srv.www.nginx.ssl
 
 /etc/nginx/ssl:
   file.directory:

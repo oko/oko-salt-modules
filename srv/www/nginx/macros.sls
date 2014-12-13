@@ -1,4 +1,4 @@
-{% macro nginx_simple_site(domain, source, user, group) %}
+{% macro nginx_simple_site(domain, source, user, group, ssl=False) %}
 # Create main site file
 /etc/nginx/sites-available/{{domain}}.site:
   file.managed:
@@ -8,6 +8,10 @@
     - mode: 640
     - watch_in:
       - service: nginx
+    {% if ssl %}
+    - require:
+      - file: /etc/nginx/ssl_params
+    {% endif %}
 
 # Enable via symlink
 /etc/nginx/sites-enabled/{{domain}}.site:

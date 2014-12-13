@@ -1,5 +1,6 @@
 # Common parameters for all SSL modes
 
+ssl_dhparam /etc/ssl/private/dhparam.pem;
 ssl_prefer_server_ciphers on;
 ssl_session_timeout 5m;
 ssl_session_cache shared:SSL:5m;
