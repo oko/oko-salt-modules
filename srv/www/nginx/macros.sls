@@ -1,4 +1,5 @@
 {% macro nginx_simple_site(domain, source, user, group) %}
+# Create main site file
 /etc/nginx/sites-available/{{domain}}.site:
   file.managed:
     - source: {{source}}
@@ -8,6 +9,7 @@
     - watch_in:
       - service: nginx
 
+# Enable via symlink
 /etc/nginx/sites-enabled/{{domain}}.site:
   file.symlink:
     - target: /etc/nginx/sites-available/{{domain}}.site
@@ -15,6 +17,7 @@
     - group: root
     - mode: 640
 
+# Create a directory under `/srv/http` for static files
 /srv/http/{{domain}}:
   file.directory:
     - makedirs: True
