@@ -53,4 +53,4 @@ Configuration modules for SaltStack.
       * `srv.www.uwsgi.macros`: app macros
 
 ## License
-See LICENSE
+See [LICENSE](https://github.com/oko/oko-salt-modules/blob/master/LICENSE)
