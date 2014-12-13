@@ -1,0 +1,2 @@
+uwsgi:
+  pkg.installed
