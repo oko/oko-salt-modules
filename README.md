@@ -55,5 +55,15 @@ Configuration modules for SaltStack.
   * `sys.fw`: firewall configuration states
     * `sys.fw.iptables`: iptables configuration states
 
+## Configuration
+
+Certain state modules support configuration via [Pillar](http://docs.saltstack.com/en/latest/topics/pillar/index.html) variables.
+
+### SSL hardening: `pillar['ssl_hardening']`
+Use Mozilla's ["Modern"](https://wiki.mozilla.org/Security/Server_Side_TLS#Modern_compatibility) SSL settings instead of ["Intermediate"](https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28default.29). Note that many older browsers do not support the ciphers available in the "Modern" profile.
+
+### IPv6 ICMP control: `pillar['ip6tables_icmp_accept']`
+Use an `ACCEPT` policy for incoming ICMPv6 packets instead of the default behavior which follows the recommendations of [RFC4890](http://tools.ietf.org/html/rfc4890).
+
 ## License
 See [LICENSE](https://github.com/oko/oko-salt-modules/blob/master/LICENSE)
