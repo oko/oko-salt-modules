@@ -1,0 +1,5 @@
+-A ICMP -j DROP
+-A TCP -j REJECT --reject-with icmp6-port-unreachable
+-A UDP -j REJECT --reject-with icmp6-port-unreachable
+COMMIT
+

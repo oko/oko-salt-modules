@@ -1,0 +1,28 @@
+# ICMPv6 per RFC 4890
+# - Available --icmpv6-type arguments via `ip6tables -p ipv6-icmp -h`
+### ICMP6 Error
+-A ICMP -p icmpv6 --icmpv6-type destination-unreachable -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type packet-too-big          -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type time-exceeded           -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type parameter-problem       -j ACCEPT
+## ICMP6 Echo
+-A ICMP -p icmpv6 --icmpv6-type echo-request -m limit --limit 900/sec -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type echo-reply   -m limit --limit 900/sec -j ACCEPT
+## Other ICMPv6
+-A ICMP -p icmpv6 --icmpv6-type router-advertisement   -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type neighbor-solicitation  -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type neighbor-advertisement -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type redirect               -m hl --hl-eq 255 -j ACCEPT
+## Link-Local Multicast
+-A ICMP -p icmpv6 --icmpv6-type 130 -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type 131 -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type 132 -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type 143 -m hl --hl-eq 255 -j ACCEPT
+## SEND Cert Path Notification
+-A ICMP -p icmpv6 --icmpv6-type 141 -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type 142 -m hl --hl-eq 255 -j ACCEPT
+## Multicast Router Discovery
+-A ICMP -p icmpv6 --icmpv6-type 151 -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type 152 -m hl --hl-eq 255 -j ACCEPT
+-A ICMP -p icmpv6 --icmpv6-type 153 -m hl --hl-eq 255 -j ACCEPT
+
