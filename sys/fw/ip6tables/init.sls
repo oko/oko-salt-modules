@@ -8,14 +8,14 @@ include:
     - makedirs: True
 
 {% if pillar.has_key("ip6tables_icmp_accept") %}
-/etc/ip6tables.d/0010-icmp:
+/etc/ip6tables.d/9998-icmp:
   file.managed:
-    - source: salt://sys/fw/ip6tables/ip6tables.d/0010-icmp-accept
+    - source: salt://sys/fw/ip6tables/ip6tables.d/9998-icmp-accept
     - makedirs: True
 {% else %}
-/etc/ip6tables.d/0010-icmp:
+/etc/ip6tables.d/9998-icmp:
   file.managed:
-    - source: salt://sys/fw/ip6tables/ip6tables.d/0010-icmp-rfc4890
+    - source: salt://sys/fw/ip6tables/ip6tables.d/9998-icmp-rfc4890
     - makedirs: True
 {% endif %}
 
@@ -33,8 +33,8 @@ include:
     - clean: True
     - require:
       - file: /etc/ip6tables.d/0000-global-pre
+      - file: /etc/ip6tables.d/9998-icmp
       - file: /etc/ip6tables.d/9999-global-post
-      - file: /etc/ip6tables.d/0010-icmp
 
 build-ip6tables:
   cmd.run:
