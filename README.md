@@ -51,6 +51,9 @@ Configuration modules for SaltStack.
       * `srv.www.nginx.macros`: site macros
     * `srv.www.uwsgi`: uWSGI configuration
       * `srv.www.uwsgi.macros`: app macros
+* `sys`: system configuration states
+  * `sys.fw`: firewall configuration states
+    * `sys.fw.iptables`: iptables configuration states
 
 ## License
 See [LICENSE](https://github.com/oko/oko-salt-modules/blob/master/LICENSE)
