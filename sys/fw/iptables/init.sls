@@ -35,3 +35,11 @@ apply-iptables:
     - name: "iptables-restore < /etc/iptables.rules"
     - require:
       - cmd: build-iptables
+/etc/network/if-pre-up.d/iptables:
+  file.managed:
+    - user: root
+    - group: root
+    - mode: 755
+    - source: salt://sys/fw/iptables/iptables-pre-up
+    - require:
+      - file: /etc/iptables.d

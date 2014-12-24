@@ -48,3 +48,12 @@ apply-ip6tables:
     - name: "ip6tables-restore < /etc/ip6tables.rules"
     - require:
       - cmd: build-ip6tables
+
+/etc/network/if-pre-up.d/ip6tables:
+  file.managed:
+    - user: root
+    - group: root
+    - mode: 755
+    - source: salt://sys/fw/ip6tables/ip6tables-pre-up
+    - require:
+      - file: /etc/ip6tables.d
